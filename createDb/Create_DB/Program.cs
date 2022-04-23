@@ -76,7 +76,7 @@ namespace Parser
         static void Main()
         {
 
-            MongoClient client = new MongoClient("mongodb+srv://Aboba:aboba777@cluster0.ts9bv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+            MongoClient client = new MongoClient(/*строка подключения*/);
 
             var collection = client.GetDatabase("dictionary");
             var latin = collection.GetCollection<BsonDocument>("latinTest");
