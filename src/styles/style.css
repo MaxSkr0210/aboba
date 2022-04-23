@@ -1,0 +1,44 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    overflow: hidden;
+    height: 100%;
+}
+
+header{
+    z-index:2
+}
+
+section{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    color: #fff;
+}
+
+.p{
+    display: block;
+}
+
+section:not(:first-child){
+    top: -1000px;
+}
+
+.scrollAnimBottom{
+    transition-duration: 1.5s;
+    transition-property: top;
+}
+
+.scrollAnimTop{
+    transition-duration: 1.5s;
+    transition-property: top;
+}
+
+section:first-child{
+    top:150px;  
+}
+
