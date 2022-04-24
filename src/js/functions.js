@@ -2,7 +2,7 @@ const classes = "d-flex align-items-center scrollAnimBottom"
 
 function animBottom(i){
     sectionsArr[i + 1].className = classes;
-    sectionsArr[i + 1].style.top = "72px";
+    sectionsArr[i + 1].style.top = "0px";
 
     return ++i;
 }

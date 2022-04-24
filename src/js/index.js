@@ -2,7 +2,7 @@ const sectionsArr = document.querySelectorAll("section");
 
 let i = 0;
 
-sectionsArr[0].style.top = "72px"
+sectionsArr[0].style.top = "0px"
 
 //scroll section bottom/top
 document.addEventListener("keydown", function(event){
@@ -38,4 +38,3 @@ for (let smoothLink of smoothLinks) {
         }
     });
 };
-

@@ -2,21 +2,32 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
-    overflow: hidden;
+html{
     height: 100%;
+}
+
+body{
+    height: 100%;
+    background-color: #f6f6f6;
+    position: relative;
+    overflow: hidden;
 }
 
 header{
-    z-index:2
+    z-index:2;
+    background-color: rgb(62, 110, 255, 0.8);
 }
-
+/*5d13e7*/
 section{
     position: absolute;
-    z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: aqua;
+    z-index: 1;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0);
+    background: url("../img/1533326959_low-poly-background-generator-min.png") no-repeat center center fixed;
+    background-size: cover;
     color: #fff;
 }
 
@@ -38,7 +49,8 @@ section:not(:first-child){
     transition-property: top;
 }
 
-section:first-child{
-    top:150px;  
+.telegram{
+    position: absolute;
+    opacity: 0.1;
+    width: 64px;
 }
-
