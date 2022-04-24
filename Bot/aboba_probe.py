@@ -14,9 +14,6 @@ from aiogram.types import ReplyKeyboardRemove, \
     ReplyKeyboardMarkup, KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton
 
-dictionary = enchant.Dict("en_US")
-print(dictionary.check("driver"))
-
 TOKEN = "5167446576:AAE2mSCcMiIGItHVw89WTbZAPxJOmNtYN8A"
 PATH_TO_FILES = "C:\\Users\\ily02\\Desktop\\ABOBA\\"
 bot = Bot(token=TOKEN)
@@ -25,20 +22,23 @@ logging.basicConfig(level=logging.INFO)
 logging.basicConfig(level=logging.DEBUG)
 wikipedia.set_lang("ru")
 
-client = MongoClient()
+client = MongoClient("mongodb+srv://Aboba:aboba777@cluster0.ts9bv.mongodb.net/dictionary?retryWrites=true&w=majority")
 db = client.dictionary
 
-language_latin = KeyboardButton('Перевод с Латыни!❤️')
+language_english = KeyboardButton('Перевод с Английского!🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢')
 language_russian = KeyboardButton('Перевод с Русского!🇷🇺')
+language_latin = KeyboardButton('Перевод с Латыни!❤️')
 frazadnya = KeyboardButton('Фраза дня 🧐')
 language_key = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 language_key.add(language_russian)
+language_key.add(language_english)
 language_key.add(language_latin)
 language_key.add(frazadnya)
 
 class Mydialog(StatesGroup):
     otvet = State()
     latin = State()
+    english = State()
 
 
 def log(message):
@@ -111,6 +111,19 @@ async def process_message(message: types.Message, state: FSMContext):
     await state.finish()
 
 @dp.message_handler(state=Mydialog.latin)
+async def process_message(message: types.Message, state: FSMContext):
+    async with state.proxy() as data:
+        answear = client.dictionary.latinTest.find_one({'translate': message.text})
+
+        if (answear == None):
+            await message.reply("Слово не найдено")
+        else:
+            await message.reply("Перевод на латынь: " + answear["word"], reply_markup=language_key)
+            await message.answer(getwiki(message.text))
+        log(message)
+    await state.finish()
+
+@dp.message_handler(state=Mydialog.english)
 async def process_message(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         answear = client.dictionary.latinTest.find_one({'translate': message.text})
