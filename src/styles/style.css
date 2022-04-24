@@ -15,7 +15,7 @@ body{
 
 header{
     z-index:2;
-    background-color: rgb(62, 110, 255, 0.8);
+    background-color: transparent;
 }
 /*5d13e7*/
 section{
@@ -26,7 +26,7 @@ section{
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, 0);
-    background: url("../img/1533326959_low-poly-background-generator-min.png") no-repeat center center fixed;
+    background: url("../img/1614724658_184-p-foni-dlya-lendinga-216.jpg") no-repeat center center fixed;
     background-size: cover;
     color: #fff;
 }
@@ -53,4 +53,17 @@ section:not(:first-child){
     position: absolute;
     opacity: 0.1;
     width: 64px;
+}
+
+.activated{
+    transition: 0.3s ease border-bottom;
+    border-radius: 0;
+}
+
+.nav-pills .nav-link{
+    border-radius: 0;
+}
+
+.nav-link{
+    padding-bottom: 3px
 }

@@ -1,4 +1,8 @@
 const sectionsArr = document.querySelectorAll("section");
+const links = document.querySelectorAll(".nav-link");
+
+links[0].className = "activated nav-link text-white"
+links[0].style.borderBottom = "2px solid #fff"
 
 let i = 0;
 
@@ -9,18 +13,28 @@ document.addEventListener("keydown", function(event){
     if (event.keyCode === 40){
         if (i === sectionsArr.length - 1) return;
         i = animBottom(i);
+        disActivated(links[i - 1]);
+        active(links[i]);
     }
-    if (event.keyCode === 38) i = animTop(i);
+    if (event.keyCode === 38) {
+        i = animTop(i);
+        disActivated(links[i + 1]);
+        active(links[i]);
+    }
 })
+
 
 //click to links then scroll to need section
 const smoothLinks = document.querySelectorAll('a[href^="#"]');
-for (let smoothLink of smoothLinks) {
-    smoothLink.addEventListener('click', function (e) {
+let prev = smoothLinks[0];
+smoothLinks.forEach((item) => {
+    item.addEventListener('click', function (e) {
         e.preventDefault();
-        const id = Number(smoothLink.getAttribute('href')[1]);
+        const id = Number(item.getAttribute('href')[1]);
 
-        console.log(id);
+        active(item);
+        disActivated(prev);
+        prev = item;
 
         if (id < i && i !== 0){
             while (id < i){
@@ -37,4 +51,4 @@ for (let smoothLink of smoothLinks) {
             return;
         }
     });
-};
+})
